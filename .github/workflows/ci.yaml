@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branchs:
+      - main
+    paths-ignore:
+      - 'README.mg'
+      - 'helm/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout#v4
+
+    - name: Set up Go 1.22
+      uses: actions/setup-go@v2
+      with:
+        go-versions: 1.22
+
+    - name: Build
+      run: go build -o go-web-app
+
+    - name: Test
+      run: go test ./...
+
+  code-quality:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@4
+
+    - name: Run golanci-lint
+      uses: golanci/golanci-lint-action@v6
+      with:
+        version: 1.56.2
+        
