@@ -8,7 +8,7 @@ image:
   repository: docker.io/ladyfantasy/go-web-app
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "26313823700"
+  tag: "26316967717"
 
 ingress:
   enabled: false
